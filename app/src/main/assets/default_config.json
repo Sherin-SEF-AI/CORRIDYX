@@ -1,0 +1,49 @@
+{
+  "_comment": "Reference defaults mirroring ai.deepmost.corridyx.config.Settings.DEFAULT. The app reads its live settings from DataStore (editable on the SETTINGS screen); this file documents the shipping defaults and the exact weights/thresholds used by the scoring pipeline.",
+  "capture": {
+    "analysisFps": 5,
+    "minSpeedMpsRoughness": 2.5,
+    "minSpeedMpsAccumulate": 0.5,
+    "thermalAggressiveness": 1.0
+  },
+  "segmentation": {
+    "geohashPrecision": 7,
+    "headingBuckets": 8,
+    "hysteresisMeters": 25,
+    "hysteresisFrames": 8
+  },
+  "compositeWeights": {
+    "lane_vis": 0.22,
+    "gnss_q": 0.18,
+    "illum": 0.12,
+    "chaos": 0.14,
+    "rough": 0.10,
+    "perception": 0.24
+  },
+  "sensorFaultGates": {
+    "gateLensDirtInvalidatesLaneVis": 0.35,
+    "gateGlareInvalidatesLaneVis": 0.6,
+    "gateMountVibInvalidatesRough": 0.7
+  },
+  "driverAlerts": {
+    "alertLensDirt": 0.45,
+    "alertGlare": 0.65,
+    "alertHeavyRain": 0.6,
+    "alertCooldownMs": 20000,
+    "ttsAlerts": false
+  },
+  "evidence": {
+    "enabled": true,
+    "maxPerSegment": 2,
+    "thumbMaxDim": 320,
+    "blurAlwaysOn": true
+  },
+  "upload": {
+    "endpoint": "",
+    "wifiOnly": true
+  },
+  "storage": {
+    "storageCapMb": 512,
+    "evictionPolicy": "oldest-uploaded-evidence-first; manifests never evicted"
+  }
+}

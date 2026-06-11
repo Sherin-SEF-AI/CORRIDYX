@@ -1,0 +1,17 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+app/build/
+/app/release/
+
+# build logs and dev screenshots
+*.log
+/*.png
+drive_*.png
+after_tap.png

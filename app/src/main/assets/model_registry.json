@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "_comment": "Day-one ships with NO bundled .tflite, so every head runs its classical engine and the app is fully runnable. To upgrade a head, drop a .tflite under assets/models/ (or a sideloaded absolute path) and add an entry below. Supported kinds: DETECTOR (COCO-style SSD: locations[1,N,4], classes[1,N], scores[1,N], count[1]) for chaos; SEGMENTATION (output [1,H,W,1] prob) for lane_vis; CLASSIFIER (output [1,labels]) for atmo. The engineTag '<modelId>@<version>' is stamped onto every score the model produces.",
+  "models": [
+  ]
+}

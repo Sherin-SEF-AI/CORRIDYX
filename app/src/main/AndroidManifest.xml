@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature android:name="android.hardware.camera.any" android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
+
+    <application
+        android:name=".CorridyxApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Corridyx"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="userLandscape"
+            android:theme="@style/Theme.Corridyx">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Shift-long capture foreground service. Also hosts the PerceptionConditions bound API. -->
+        <service
+            android:name=".service.CaptureService"
+            android:exported="false"
+            android:foregroundServiceType="camera|location" />
+
+        <!-- Bound local API other ai.deepmost.* perception apps connect to.
+             Exported so sibling apps can bind; protected by a custom signature-or-known-package check in onBind. -->
+        <service
+            android:name=".conditions_api.PerceptionConditionsService"
+            android:exported="true"
+            android:permission="ai.deepmost.corridyx.permission.READ_PERCEPTION_CONDITIONS">
+            <intent-filter>
+                <action android:name="ai.deepmost.perception.CONDITIONS" />
+            </intent-filter>
+        </service>
+
+        <!-- WorkManager default initializer is used; no custom provider needed. -->
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+    <!-- Custom permission siblings must hold to bind the conditions API. -->
+    <permission
+        android:name="ai.deepmost.corridyx.permission.READ_PERCEPTION_CONDITIONS"
+        android:protectionLevel="signature|normal" />
+
+</manifest>

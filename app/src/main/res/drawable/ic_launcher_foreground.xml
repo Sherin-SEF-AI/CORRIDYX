@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Stylised corridor: converging lane lines (the ODD corridor metaphor). -->
+    <path
+        android:strokeColor="#E8FF3A"
+        android:strokeWidth="3"
+        android:fillColor="#00000000"
+        android:pathData="M38,86 L50,42 M70,86 L58,42" />
+    <path
+        android:strokeColor="#E8FF3A"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:pathData="M54,40 L54,30" />
+    <path
+        android:fillColor="#E8FF3A"
+        android:pathData="M54,22 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0" />
+</vector>

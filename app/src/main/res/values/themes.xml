@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Compose owns the in-app styling; this base theme only governs the splash/window
+         before Compose attaches. Matte near-black per the "Operational Materialism" spec. -->
+    <style name="Theme.Corridyx" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/corridyx_bg</item>
+        <item name="android:statusBarColor">@color/corridyx_bg</item>
+        <item name="android:navigationBarColor">@color/corridyx_bg</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>
